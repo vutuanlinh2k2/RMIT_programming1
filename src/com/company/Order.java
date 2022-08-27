@@ -9,12 +9,12 @@ public class Order {
     // or HashMap<Product, Integer> if product already contains info of price
     String orderID;
     String address;
-    int phoneNumb;
+    String phoneNumb;
     String name;
 
     // an order would contain info of the product ordered,
     // the quantity
-    public Order(HashMap<Product, Integer> productDetails, String orderID, String address, int phoneNumb, String memberName) {
+    public Order(HashMap<Product, Integer> productDetails, String orderID, String address, String phoneNumb, String memberName) {
         this.productDetails = productDetails;
         this.orderID = orderID;
         this.address = address;
