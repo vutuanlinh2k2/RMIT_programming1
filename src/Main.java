@@ -4,30 +4,31 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        String role;
-        boolean roleSelected = false;
-        while (!roleSelected) {
-            System.out.println("Please enter your role (admin / member / customer): ");
-            role = scanner.nextLine();
-
-            switch (role) {
-                case "admin":
-                    adminFlow();
-                    roleSelected = true;
-                    break;
-                case "member":
-                    memberFlow();
-                    roleSelected = true;
-                    break;
-                case "customer":
-                    customerFlow();
-                    roleSelected = true;
-                    break;
-                default:
-                    System.out.println("Please only choose between admin, member or customer!");
-            }
-        }
+//        Scanner scanner = new Scanner(System.in);
+//        String role;
+//        boolean roleSelected = false;
+//        while (!roleSelected) {
+//            System.out.println("Please enter your role (admin / member / customer): ");
+//            role = scanner.nextLine();
+//
+//            switch (role) {
+//                case "admin":
+//                    adminFlow();
+//                    roleSelected = true;
+//                    break;
+//                case "member":
+//                    memberFlow();
+//                    roleSelected = true;
+//                    break;
+//                case "customer":
+//                    customerFlow();
+//                    roleSelected = true;
+//                    break;
+//                default:
+//                    System.out.println("Please only choose between admin, member or customer!");
+//            }
+//        }
+        System.out.println(Order.createOrder("dd"));
     }
 
     static public void adminFlow() throws IOException {
@@ -54,6 +55,9 @@ public class Main {
             int option = scanner.nextInt();
             switch (option) {
                 case 1:
+                    admin.viewProduct();
+                    newCommandSeparator();
+                    break;
                 case 2:
                 case 3:
                 case 4:

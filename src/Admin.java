@@ -46,6 +46,27 @@ public class Admin {
         return false;
     }
 
+    // 8 - a method to view all products
+    public void viewProduct() throws IOException {
+
+        System.out.println("Viewing all products\n");
+        Scanner scannerProduct = new Scanner(new File("./product.txt"));
+
+        while (scannerProduct.hasNextLine()) {
+            String currentProduct = scannerProduct.nextLine();
+            String[] currentProductAttrs = currentProduct.split(",");
+            String currentProductId = currentProductAttrs[0];
+            String currentProductName = currentProductAttrs[1];
+            String currentProductPrice = currentProductAttrs[2];
+            String currentProductCategory = currentProductAttrs[3];
+
+            System.out.println("Id: " + currentProductId);
+            System.out.println("Name: " + currentProductName);
+            System.out.println("Price: " + currentProductPrice);
+            System.out.println("Category: " + currentProductCategory + "\n");
+        }
+    }
+
     // 9 - a method to let admin add a new product
     public void addProduct() throws IOException {
 
@@ -68,7 +89,7 @@ public class Admin {
             productName = scannerInput.nextLine();
 
             // if there is no product with this name yet, the input name is valid
-            if (!checkProductExisted(productName)) {
+            if (!Utility.checkProductExisted(productName)) {
                 break;
             }
 
@@ -154,29 +175,5 @@ public class Admin {
 
         // cannot find a product matching the name input, prompt the admin
         System.out.println("Cannot find any product matching this name.");
-    }
-
-    // a method to check if the product with the input name is existed or not
-    private boolean checkProductExisted(String name) throws IOException {
-
-        // a scanner for the product.txt file
-        Scanner scannerProduct = new Scanner(new File("./product.txt"));
-
-        // loop through each line of the product.txt file
-        while (scannerProduct.hasNextLine()) {
-
-            // getting the name of the current product
-            String currentProduct = scannerProduct.nextLine();
-            String[] currentProductAttrs = currentProduct.split(",");
-            String currentProductName = currentProductAttrs[1];
-
-            // if the current product's name match with the input, return true
-            if (name.equals(currentProductName)) {
-                return true;
-            }
-        }
-
-        // no product's name match with the input, return false
-        return false;
     }
 }
