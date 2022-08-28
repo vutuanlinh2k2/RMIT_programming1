@@ -4,31 +4,30 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        Scanner scanner = new Scanner(System.in);
-//        String role;
-//        boolean roleSelected = false;
-//        while (!roleSelected) {
-//            System.out.println("Please enter your role (admin / member / customer): ");
-//            role = scanner.nextLine();
-//
-//            switch (role) {
-//                case "admin":
-//                    adminFlow();
-//                    roleSelected = true;
-//                    break;
-//                case "member":
-//                    memberFlow();
-//                    roleSelected = true;
-//                    break;
-//                case "customer":
-//                    customerFlow();
-//                    roleSelected = true;
-//                    break;
-//                default:
-//                    System.out.println("Please only choose between admin, member or customer!");
-//            }
-//        }
-        System.out.println(Order.createOrder("dd"));
+        Scanner scanner = new Scanner(System.in);
+        String role;
+        boolean roleSelected = false;
+        while (!roleSelected) {
+            System.out.println("Please enter your role (admin / member / customer): ");
+            role = scanner.nextLine();
+
+            switch (role) {
+                case "admin":
+                    adminFlow();
+                    roleSelected = true;
+                    break;
+                case "member":
+                    memberFlow();
+                    roleSelected = true;
+                    break;
+                case "customer":
+                    customerFlow();
+                    roleSelected = true;
+                    break;
+                default:
+                    System.out.println("Please only choose between admin, member or customer!");
+            }
+        }
     }
 
     static public void adminFlow() throws IOException {
@@ -50,6 +49,8 @@ public class Main {
             System.out.println("5 - updateProductPrice");
             System.out.println("6 - orderByCustomerId");
             System.out.println("7 - changeOrderStatus");
+            System.out.println("8 - getOrderDetailsToday");
+            System.out.println("9 - getRevenueToday");
             System.out.println("0 - quit\n");
 
             int option = scanner.nextInt();
@@ -59,7 +60,13 @@ public class Main {
                     newCommandSeparator();
                     break;
                 case 2:
+                    admin.viewOrder();
+                    newCommandSeparator();
+                    break;
                 case 3:
+                    admin.viewMember();
+                    newCommandSeparator();
+                    break;
                 case 4:
                     admin.addProduct();
                     newCommandSeparator();
@@ -69,7 +76,21 @@ public class Main {
                     newCommandSeparator();
                     break;
                 case 6:
+                    admin.getOrderByCustomerId();
+                    newCommandSeparator();
+                    break;
                 case 7:
+                    admin.changeOrderStatus();
+                    newCommandSeparator();
+                    break;
+                case 8:
+                    admin.getOrdersDetailToday();
+                    newCommandSeparator();
+                    break;
+                case 9:
+                    admin.revenueToday();
+                    newCommandSeparator();
+                    break;
                 case 0:
                     isContinue = false;
                     System.out.println("Stopping the program.");
