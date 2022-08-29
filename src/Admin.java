@@ -61,8 +61,8 @@ public class Admin {
             Product.displayProductDetail(product);
         }
     }
-    // 8 - a method to view all orders
 
+    // 8 - a method to view all orders
     public void viewOrder() throws IOException {
 
         System.out.println("Viewing all orders.\n");
@@ -77,8 +77,8 @@ public class Admin {
             Order.displayOrderDetail(order);
         }
     }
-    // 8 - a method to view all member details
 
+    // 8 - a method to view all member details
     public void viewMember() throws IOException {
 
         System.out.println("Viewing all members.\n");
@@ -130,8 +130,8 @@ public class Admin {
         String productCategory = scannerInput.nextLine();
 
         // getting new product price
-        System.out.println("Product's price: ");
-        String productPrice = String.valueOf(scannerInput.nextDouble());
+        String productPrice = String.valueOf(InputValidator.getDoubleInput("Product's price: ",
+                "Product price must be an integer or decimal number."));
 
         // concat new info into a line to add the product.txt file
         String newProduct = String.join(",", productId, productName, productPrice, productCategory);
@@ -182,7 +182,8 @@ public class Admin {
 
             // ask the admin for the updated price
             System.out.println("Changing the price to: ");
-            String newPrice = String.valueOf(scannerInput.nextDouble());
+            String newPrice = String.valueOf(InputValidator.getDoubleInput("Product's new price: ",
+                    "Product price must be an integer or decimal number."));
 
             // updated the new price for the product
             String currentPrice = currentProduct.split(",")[2];
@@ -204,7 +205,7 @@ public class Admin {
         System.out.println("Cannot find any product matching this name.");
     }
 
-    // 11 - a method to let admin get orders by customer Id
+    // 11 - a method to let admin get orders by customer id
     public void getOrderByCustomerId() throws IOException {
 
         System.out.println("Getting orders by customer Id\n");
@@ -237,7 +238,7 @@ public class Admin {
             }
         }
 
-        // if there were no orders with this customerId, prompt to admin
+        // if there were no orders with this customer id, prompt to admin
         if (!customerExisted) {
             System.out.println("Cannot find any order with this customer id!");
         }
@@ -305,8 +306,8 @@ public class Admin {
         // cannot find any order that match the name input, prompt the admin
         System.out.println("Cannot find any order matching this id.");
     }
-    // a method to display all the order for today
 
+    // a method to display all the order for today
     public void getOrdersDetailToday() throws IOException {
         System.out.println("Getting order details for today.\n");
 
