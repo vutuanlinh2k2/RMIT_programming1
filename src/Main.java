@@ -82,6 +82,54 @@ public class Main {
 
     static public void memberFlow() throws IOException {
 
+            boolean isLogin = false;
+            while (!isLogin) {
+                Member loggedMember = Member.login();
+                isLogin = loggedMember != null;
+            }
+            Member loggedMember = Member.login();
+            Scanner scanner = new Scanner(System.in);
+            boolean isContinue = true;
+            System.out.println("Welcome! "+loggedMember.getName());
+
+            while (isContinue) {
+            System.out.println("\nChoose one of the following actions (0-7): ");
+            System.out.println("1 - create new order");
+            System.out.println("2 - view existing orders");
+            System.out.println("3 - view membership badge (bronze/silver/gold)");
+//            System.out.println("4 - addNewProduct");
+//            System.out.println("5 - updateProductPrice");
+//            System.out.println("6 - orderByCustomerId");
+//            System.out.println("7 - changeOrderStatus");
+            System.out.println("0 - quit\n");
+
+            int option = scanner.nextInt();
+            switch (option) {
+                case 1:
+                    loggedMember.
+                    newCommandSeparator();
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    admin.addProduct();
+                    newCommandSeparator();
+                    break;
+                case 5:
+                    admin.updateProductPrice();
+                    newCommandSeparator();
+                    break;
+                case 6:
+                case 7:
+                case 0:
+                    isContinue = false;
+                    System.out.println("Stopping the program.");
+                    break;
+                default:
+                    System.out.println("\nNo action correspond to this number! Please enter 0-7 only.\n");
+            }
+        }
+    }
     }
 
     static public void customerFlow() throws IOException {
