@@ -41,7 +41,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         boolean isContinue = true;
         while (isContinue) {
-            System.out.println("\nChoose one of the following actions (0-7): ");
             System.out.println("1 - viewProducts");
             System.out.println("2 - viewOrders");
             System.out.println("3 - viewMembers");
@@ -53,7 +52,8 @@ public class Main {
             System.out.println("9 - getRevenueToday");
             System.out.println("0 - quit\n");
 
-            int option = scanner.nextInt();
+            int option = InputValidator.getIntInput("Choose one of the actions above (0-9): ",
+                    "Please only choose number 0-9");
             switch (option) {
                 case 1:
                     admin.viewProduct();
@@ -103,10 +103,50 @@ public class Main {
 
     static public void memberFlow() throws IOException {
 
+
     }
 
     static public void customerFlow() throws IOException {
+        Customer customer = new Customer();
 
+        boolean isContinue = true;
+        while (isContinue) {
+            System.out.println("1 - register");
+            System.out.println("2 - login");
+            System.out.println("3 - see all product details");
+            System.out.println("4 - search products by category");
+            System.out.println("5 - sort product by price");
+            System.out.println("0 - quit\n");
+
+            int option = InputValidator.getIntInput("Choose one of the actions above (0-5): ",
+                    "Please only choose number 0-5");
+            switch (option) {
+                case 1:
+                    newCommandSeparator();
+                    break;
+                case 2:
+                    newCommandSeparator();
+                    break;
+                case 3:
+                    customer.viewProduct();
+                    newCommandSeparator();
+                    break;
+                case 4:
+                    customer.searchProductByCategory();
+                    newCommandSeparator();
+                    break;
+                case 5:
+                    customer.sortProduct();
+                    newCommandSeparator();
+                    break;
+                case 0:
+                    isContinue = false;
+                    System.out.println("Stopping the program.");
+                    break;
+                default:
+                    System.out.println("\nNo action correspond to this number! Please enter 0-5 only.\n");
+            }
+        }
     }
 
     static public void welcomeScreen() {
