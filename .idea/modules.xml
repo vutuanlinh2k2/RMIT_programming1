@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/NewMavenFile/NewMavenFile.iml" filepath="$PROJECT_DIR$/NewMavenFile/NewMavenFile.iml" />
       <module fileurl="file://$PROJECT_DIR$/Programming1_Group.iml" filepath="$PROJECT_DIR$/Programming1_Group.iml" />
     </modules>
   </component>
