@@ -58,7 +58,9 @@ public class Order implements Serializable {
                         PrintWriter output = null;
                         try {
                             output = new PrintWriter(new FileWriter("order.txt", true));
-                            output.println(currentProductId + "," + customerId + "," + orderAddress + "," + currentProductName);
+                            output.println(currentProductId + "," + customerId + "," +LocalDate.now() +","+orderAddress + "," + currentProductName+","+currentProductPrice
+                            +",");
+
                         }
                         catch(IOException ioe) {
                             System.err.println(ioe.getMessage());
