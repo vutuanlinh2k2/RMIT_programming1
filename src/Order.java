@@ -55,21 +55,6 @@ public class Order implements Serializable {
                         String currentProductId = currentProductAttrs[0];
                        double currentProductPrice = Double.parseDouble(currentProductAttrs[2]);
                        String currentProductCategory = currentProductAttrs[3];
-                        PrintWriter output = null;
-                        try {
-                            output = new PrintWriter(new FileWriter("order.txt", true));
-                            output.println(currentProductId + "," + customerId + "," +LocalDate.now() +","+orderAddress + "," + currentProductName+","+currentProductPrice
-                            +",");
-
-                        }
-                        catch(IOException ioe) {
-                            System.err.println(ioe.getMessage());
-                        }
-                        finally {
-                            if (output!=null) {
-                                output.close();
-                            }
-                        }
                        product = new Product(currentProductId, currentProductName, currentProductPrice, currentProductCategory);
                        isGettingProduct = false;
                     }
@@ -105,9 +90,23 @@ public class Order implements Serializable {
                 }
             }
         }
-
-        return new Order(orderProductDetails, orderAddress, customerId);
+       Order currentOrder = new Order(orderProductDetails, orderAddress, customerId);
+        PrintWriter output = null;
+        try {
+            output = new PrintWriter(new FileWriter("order.txt", true));
+            output.println(currentOrder.orderID+ "," + customerId + "," +LocalDate.now() +","+orderAddress + "," + orderProductDetails+","+currentOrder.total+","+"delivered");
+        }
+        catch(IOException ioe) {
+            System.err.println(ioe.getMessage());
+        }
+        finally {
+            if (output!=null) {
+                output.close();
+            }
+        }
+        return currentOrder;
     }
+
 
     public static void displayOrderDetail(String productInfo) {
 
@@ -137,7 +136,30 @@ public class Order implements Serializable {
         System.out.println("Order status: " + orderStatus + "\n");
     }
 
-//    public double calculatePriceSum(HashMap<Product, Integer> productDetails) {
+    public HashMap<Product, Integer> getProductDetails() {
+        return productDetails;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+    //    public double calculatePriceSum(HashMap<Product, Integer> productDetails) {
 //        // obtain price x quantity from productDetails
 //        double total = 0;
 //        for (var index : productDetails.entrySet()) {

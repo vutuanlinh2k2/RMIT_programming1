@@ -1,7 +1,12 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Member {
     private String name;
@@ -9,14 +14,20 @@ public class Member {
     private String address;
     private String username;
     private String password;
-    public Member(String name, int phoneNumb, String address, String username,
+    private String memberID;
+    public Member(String memberID,String name, int phoneNumb, String address, String username,
                   String password) {
+        this.memberID = UUID.randomUUID().toString();
         this.name = name;
         this.phoneNumb = phoneNumb;
         this.address = address;
         this.username = username;
         this.password = password;
     }
+
+    public Member() {
+    }
+
     public void signUp() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Do you want to create a member account?: Y/N");
@@ -76,6 +87,87 @@ public class Member {
         scannerMember.close();
         return false;
     }
+    public static Order createOrder(String customerId) throws IOException {
+        Scanner inputScanner = new Scanner(System.in);
+
+        System.out.println("Please give us an address for delivery: ");
+        String orderAddress = inputScanner.nextLine();
+
+        HashMap<Product, Integer> orderProductDetails = new HashMap<Product, Integer>();
+        boolean continueAddingProduct = true;
+
+        while (continueAddingProduct) {
+            Product product = null;
+
+            boolean isGettingProduct = true;
+            while (isGettingProduct) {
+
+                Scanner scannerProduct = new Scanner(new File("./product.txt"));
+
+                System.out.println("\nEnter the name of the product you want to purchase: ");
+                String nameInput = inputScanner.nextLine();
+
+                while (scannerProduct.hasNextLine()) {
+
+                    String currentProduct = scannerProduct.nextLine();
+                    String[] currentProductAttrs = currentProduct.split(",");
+                    String currentProductName = currentProductAttrs[1];
+
+                    if (currentProductName.equals(nameInput)) {
+                        String currentProductId = currentProductAttrs[0];
+                        double currentProductPrice = Double.parseDouble(currentProductAttrs[2]);
+                        String currentProductCategory = currentProductAttrs[3];
+                        product = new Product(currentProductId, currentProductName, currentProductPrice, currentProductCategory);
+                        isGettingProduct = false;
+                    }
+                }
+
+                if (isGettingProduct) {
+                    System.out.println("Cannot find the product with matching name. Please try again.");
+                }
+            }
+            System.out.println("Enter the amount that you want to buy: ");
+            int num = inputScanner.nextInt();
+
+            orderProductDetails.put(product, num);
+
+            boolean validOption = false;
+
+            System.out.println("Would you like to purchase more product (y/n): ");
+            while (!validOption) {
+                String isContinue = inputScanner.nextLine();
+
+                if (isContinue.equals("")) {
+                    continue;
+                }
+                else if (isContinue.equals("n")) {
+                    continueAddingProduct = false;
+                    validOption = true;
+                } else if (isContinue.equals("y")) {
+                    validOption = true;
+                } else {
+                    System.out.println("Please enter only y (for yes) or n (for no).");
+                    System.out.println("Would you like to purchase more product (y/n): ");
+                }
+            }
+        }
+        Order currentOrder = new Order(orderProductDetails, orderAddress, customerId);
+        PrintWriter output = null;
+        try {
+            output = new PrintWriter(new FileWriter("order.txt", true));
+            output.println(currentOrder.getOrderID()+ "," + customerId + "," + LocalDate.now() +","+orderAddress + "," + orderProductDetails+","+currentOrder.getTotal()+","+"delivered");
+        }
+        catch(IOException ioe) {
+            System.err.println(ioe.getMessage());
+        }
+        finally {
+            if (output!=null) {
+                output.close();
+            }
+        }
+        return currentOrder;
+    }
+
 
     public static void displayMemberDetail(String memberInfo) {
         String [] memberAttrs = memberInfo.split(",");
@@ -91,6 +183,16 @@ public class Member {
         System.out.println("Phone number: " + memberPhone);
         System.out.println("Address: " + memberAddress);
         System.out.println("Membership: " + membership);
+    }
+
+    public String displayMemberDetails() {
+        return "Member{" +
+                "name='" + name + '\'' +
+                ", phoneNumb=" + phoneNumb +
+                ", address='" + address + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     public String getName() {
@@ -111,5 +213,9 @@ public class Member {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getMemberID() {
+        return memberID;
     }
 }
