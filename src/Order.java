@@ -55,6 +55,19 @@ public class Order implements Serializable {
                         String currentProductId = currentProductAttrs[0];
                        double currentProductPrice = Double.parseDouble(currentProductAttrs[2]);
                        String currentProductCategory = currentProductAttrs[3];
+                        PrintWriter output = null;
+                        try {
+                            output = new PrintWriter(new FileWriter("order.txt", true));
+                            output.println(currentProductId + "," + customerId + "," + orderAddress + "," + currentProductName);
+                        }
+                        catch(IOException ioe) {
+                            System.err.println(ioe.getMessage());
+                        }
+                        finally {
+                            if (output!=null) {
+                                output.close();
+                            }
+                        }
                        product = new Product(currentProductId, currentProductName, currentProductPrice, currentProductCategory);
                        isGettingProduct = false;
                     }
@@ -90,6 +103,7 @@ public class Order implements Serializable {
                 }
             }
         }
+
         return new Order(orderProductDetails, orderAddress, customerId);
     }
 
