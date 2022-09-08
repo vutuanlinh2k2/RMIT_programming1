@@ -103,6 +103,21 @@ public class Member {
         System.out.println("Membership: " + membership);
     }
 
+    public void modifyMembership(double total) {
+        if (total >= 5 && total < 10) {
+            this.setType("Silver");
+        }
+        else if (total >= 10 && total < 25) {
+            this.setType("Gold");
+        }
+        else if (total >= 25) {
+            this.setType("Platinum");
+        }
+        else {
+            this.setType("YOU POOR ASS");
+        }
+    }
+
     public String getCustomerID() {
         return customerID;
     }

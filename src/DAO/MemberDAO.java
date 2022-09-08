@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class memberDAO extends AbstractDAO<String, Member> {
+public class MemberDAO extends AbstractDAO<String, Member> {
 
     HashMap<String, Member> members;
 
-    public memberDAO () {
+    public MemberDAO() {
         this.members = readCVSFile("member.cvs");
 
     }
@@ -29,7 +29,7 @@ public class memberDAO extends AbstractDAO<String, Member> {
     }
 
     @Override
-    public void create(Member obj) {
+    public void create(Member obj) throws FileNotFoundException {
         String[] values = {
                 obj.getCustomerID(),
                 obj.getName(),

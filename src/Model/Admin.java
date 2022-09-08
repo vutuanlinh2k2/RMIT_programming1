@@ -1,5 +1,7 @@
 package Model;
 
+import DAO.MemberDAO;
+import DAO.OrderDAO;
 import Model.Member;
 
 import java.util.*;
@@ -375,4 +377,25 @@ public class Admin {
 
         System.out.println("Total revenue today is: " + revenue);
     }
+
+    public void membershipValuate(String customerID) {
+        OrderDAO orderDAO = new OrderDAO();
+        List<Order> listAllorders = orderDAO.findAll();
+        List<Order> newList = new ArrayList<>();
+
+        for (Order o : listAllorders) {
+            if (o.getCustomerId().equals(customerID) && o.getStatus().equals("paid")) {
+                newList.add(o);
+            }
+        }
+        double total = 0;
+        for (Order o : newList) {
+            total += o.getTotal();
+        }
+
+        MemberDAO memberDAO = new MemberDAO();
+        Member member = memberDAO.findOne(customerID);
+        member.modifyMembership(total);
+    }
+
 }
