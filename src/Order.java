@@ -25,74 +25,6 @@ public class Order implements Serializable {
         this.date = LocalDate.now();
     }
 
-    public static Order createOrder(String customerId) throws IOException {
-        Scanner inputScanner = new Scanner(System.in);
-
-        System.out.println("Please give us an address for delivery: ");
-        String orderAddress = inputScanner.nextLine();
-
-        HashMap<Product, Integer> orderProductDetails = new HashMap<Product, Integer>();
-        boolean continueAddingProduct = true;
-
-        while (continueAddingProduct) {
-            Product product = null;
-
-            boolean isGettingProduct = true;
-            while (isGettingProduct) {
-
-                Scanner scannerProduct = new Scanner(new File("./product.txt"));
-
-                System.out.println("\nEnter the name of the product you want to purchase: ");
-                String nameInput = inputScanner.nextLine();
-
-                while (scannerProduct.hasNextLine()) {
-
-                    String currentProduct = scannerProduct.nextLine();
-                    String[] currentProductAttrs = currentProduct.split(",");
-                    String currentProductName = currentProductAttrs[1];
-
-                    if (currentProductName.equals(nameInput)) {
-                        String currentProductId = currentProductAttrs[0];
-                       double currentProductPrice = Double.parseDouble(currentProductAttrs[2]);
-                       String currentProductCategory = currentProductAttrs[3];
-                       product = new Product(currentProductId, currentProductName, currentProductPrice, currentProductCategory);
-                       isGettingProduct = false;
-                    }
-                }
-
-                if (isGettingProduct) {
-                    System.out.println("Cannot find the product with matching name. Please try again.");
-                }
-            }
-
-            System.out.println("Enter the amount that you want to buy: ");
-            int num = inputScanner.nextInt();
-
-            orderProductDetails.put(product, num);
-
-            boolean validOption = false;
-
-            System.out.println("Would you like to purchase more product (y/n): ");
-            while (!validOption) {
-                String isContinue = inputScanner.nextLine();
-
-                if (isContinue.equals("")) {
-                    continue;
-                }
-                else if (isContinue.equals("n")) {
-                    continueAddingProduct = false;
-                    validOption = true;
-                } else if (isContinue.equals("y")) {
-                    validOption = true;
-                } else {
-                    System.out.println("Please enter only y (for yes) or n (for no).");
-                    System.out.println("Would you like to purchase more product (y/n): ");
-                }
-            }
-        }
-        return new Order(orderProductDetails, orderAddress, customerId);
-    }
-
     public static void displayOrderDetail(String productInfo) {
 
         String[] orderAttrs = productInfo.split(",");
@@ -121,7 +53,30 @@ public class Order implements Serializable {
         System.out.println("Order status: " + orderStatus + "\n");
     }
 
-//    public double calculatePriceSum(HashMap<Product, Integer> productDetails) {
+    public HashMap<Product, Integer> getProductDetails() {
+        return productDetails;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+    //    public double calculatePriceSum(HashMap<Product, Integer> productDetails) {
 //        // obtain price x quantity from productDetails
 //        double total = 0;
 //        for (var index : productDetails.entrySet()) {
