@@ -152,9 +152,8 @@ public class Member {
             }
         }
         Order currentOrder = new Order(orderProductDetails, orderAddress, customerId);
-        try (PrintWriter output = new PrintWriter(new FileWriter("order.txt", true))) {
-            output.println(currentOrder.getOrderID() + "," + customerId + "," + LocalDate.now() + "," + orderAddress + "," + orderProductDetails + "," + currentOrder.getTotal() + "," + "delivered");
-        }
+        PrintWriter output = new PrintWriter(new FileWriter("order.txt", true));
+        output.println(currentOrder.getOrderID() + "," + customerId + "," + LocalDate.now() + "," + orderAddress + "," + orderProductDetails + "," + currentOrder.getTotal() + "," + "delivered");
         return currentOrder;
     }
 
