@@ -15,7 +15,7 @@ public class Member {
     private String username;
     private String password;
     private String memberID;
-    public Member(String memberID,String name, int phoneNumb, String address, String username,
+    public Member(String name, int phoneNumb, String address, String username,
                   String password) {
         this.memberID = UUID.randomUUID().toString();
         this.name = name;
@@ -152,18 +152,8 @@ public class Member {
             }
         }
         Order currentOrder = new Order(orderProductDetails, orderAddress, customerId);
-        PrintWriter output = null;
-        try {
-            output = new PrintWriter(new FileWriter("order.txt", true));
-            output.println(currentOrder.getOrderID()+ "," + customerId + "," + LocalDate.now() +","+orderAddress + "," + orderProductDetails+","+currentOrder.getTotal()+","+"delivered");
-        }
-        catch(IOException ioe) {
-            System.err.println(ioe.getMessage());
-        }
-        finally {
-            if (output!=null) {
-                output.close();
-            }
+        try (PrintWriter output = new PrintWriter(new FileWriter("order.txt", true))) {
+            output.println(currentOrder.getOrderID() + "," + customerId + "," + LocalDate.now() + "," + orderAddress + "," + orderProductDetails + "," + currentOrder.getTotal() + "," + "delivered");
         }
         return currentOrder;
     }
