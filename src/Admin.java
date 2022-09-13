@@ -1,9 +1,3 @@
-//package Model;
-
-//import DAO.MemberDAO;
-//import DAO.OrderDAO;
-//import Model.Member;
-
 import java.util.*;
 import java.io.*;
 import java.lang.*;
@@ -117,7 +111,9 @@ public class Admin {
         while (true) {
 
             // getting the input name
-            System.out.println("Model.Product's name: ");
+
+            System.out.println("Product's name: ");
+
             productName = scannerInput.nextLine();
 
             // if there is no product with this name yet, the input name is valid
@@ -132,12 +128,12 @@ public class Admin {
         }
 
         // getting new product category
-        System.out.println("Model.Product's category: ");
+        System.out.println("Product's category: ");
         String productCategory = scannerInput.nextLine();
 
         // getting new product price
-        String productPrice = String.valueOf(InputValidator.getDoubleInput("Model.Product's price: ",
-                "Model.Product price must be an integer or decimal number."));
+        String productPrice = String.valueOf(InputValidator.getDoubleInput("Product's price: ",
+                "Product price must be an integer or decimal number."));
 
         // concat new info into a line to add the product.txt file
         String newProduct = String.join(",", productId, productName, productPrice, productCategory);
@@ -188,8 +184,8 @@ public class Admin {
 
             // ask the admin for the updated price
             System.out.println("Changing the price to: ");
-            String newPrice = String.valueOf(InputValidator.getDoubleInput("Model.Product's new price: ",
-                    "Model.Product price must be an integer or decimal number."));
+            String newPrice = String.valueOf(InputValidator.getDoubleInput("Product's new price: ",
+                    "Product price must be an integer or decimal number."));
 
             // updated the new price for the product
             String currentPrice = currentProduct.split(",")[2];
@@ -224,7 +220,7 @@ public class Admin {
 
         // getting customer id input
         String inputCustomerId = scannerInput.nextLine();
-        System.out.println("Enter Model.Customer Id: ");
+        System.out.println("Enter Customer Id: ");
 
         // a variable to check if there were any orders with this customerId
         boolean customerExisted = false;
@@ -377,7 +373,7 @@ public class Admin {
 
         System.out.println("Total revenue today is: " + revenue);
     }
-
+    
     public void membershipValuate(String customerID) {
         OrderDAO orderDAO = new OrderDAO();
         List<Order> listAllorders = orderDAO.findAll();
@@ -397,5 +393,4 @@ public class Admin {
         Member member = memberDAO.findOne(customerID);
         member.modifyMembership(total);
     }
-
 }

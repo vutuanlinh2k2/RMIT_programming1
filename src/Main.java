@@ -1,8 +1,6 @@
-//package Application;
 
 import java.io.IOException;
 import java.util.*;
-//import Model.*;
 
 public class Main {
 
@@ -105,8 +103,43 @@ public class Main {
     }
 
     static public void memberFlow() throws IOException {
+        Member member = new Member();
+        boolean isLogin = false;
+        while (!isLogin) {
+            isLogin = member.login();
+        }
+        Scanner scanner = new Scanner(System.in);
+        boolean isContinue = true;
+        while (isContinue) {
+            System.out.println("1 - create new order");
+            System.out.println("2 - view membership badge (silver/gold/platinum)");
+            System.out.println("3 - view account details");
+//            System.out.println("4 - search products by category");
+//            System.out.println("5 - sort product by price");
+            System.out.println("0 - quit\n");
 
-
+            int option = InputValidator.getIntInput("Choose one of the actions above (0-5): ",
+                    "Please only choose number 0-5");
+            switch (option) {
+                case 1:
+                    Member.createOrder(member.getMemberID());
+                    newCommandSeparator();
+                    break;
+                case 2:
+                    newCommandSeparator();
+                    break;
+                case 3:
+                    System.out.println(member.displayMemberDetails());
+                    newCommandSeparator();
+                    break;
+                case 0:
+                    isContinue = false;
+                    System.out.println("Stopping the program.");
+                    break;
+                default:
+                    System.out.println("\nNo action correspond to this number! Please enter 0-5 only.\n");
+            }
+        }
     }
 
     static public void customerFlow() throws IOException {
