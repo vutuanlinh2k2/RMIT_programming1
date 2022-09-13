@@ -111,7 +111,9 @@ public class Admin {
         while (true) {
 
             // getting the input name
+
             System.out.println("Product's name: ");
+
             productName = scannerInput.nextLine();
 
             // if there is no product with this name yet, the input name is valid
@@ -370,5 +372,25 @@ public class Admin {
         }
 
         System.out.println("Total revenue today is: " + revenue);
+    }
+    
+    public void membershipValuate(String customerID) {
+        OrderDAO orderDAO = new OrderDAO();
+        List<Order> listAllorders = orderDAO.findAll();
+        List<Order> newList = new ArrayList<>();
+
+        for (Order o : listAllorders) {
+            if (o.getCustomerId().equals(customerID) && o.getStatus().equals("paid")) {
+                newList.add(o);
+            }
+        }
+        double total = 0;
+        for (Order o : newList) {
+            total += o.getTotal();
+        }
+
+        MemberDAO memberDAO = new MemberDAO();
+        Member member = memberDAO.findOne(customerID);
+        member.modifyMembership(total);
     }
 }

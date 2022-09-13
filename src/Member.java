@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,25 +10,31 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class Member {
+
+
+    private String customerID;
     private String name;
-    private int phoneNumb;
+    private String phoneNumb;
     private String address;
     private String username;
     private String password;
-    private String memberID;
-    public Member(String name, int phoneNumb, String address, String username,
-                  String password) {
+    //default membership type is "NONE"
+    private String type = "NONE";
+
+    public Member() {};
+
+    public Member(String name, String phoneNumb, String address, String username, String password) {
+        this.customerID = UUID.randomUUID().toString();
+
         this.memberID = UUID.randomUUID().toString();
+
         this.name = name;
         this.phoneNumb = phoneNumb;
         this.address = address;
         this.username = username;
         this.password = password;
     }
-
-    public Member() {
-    }
-
+    
     public void signUp() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Do you want to create a member account?: Y/N");
@@ -87,6 +94,7 @@ public class Member {
         scannerMember.close();
         return false;
     }
+
     public static Order createOrder(String customerId) throws IOException {
         Scanner inputScanner = new Scanner(System.in);
 
@@ -157,7 +165,6 @@ public class Member {
         return currentOrder;
     }
 
-
     public static void displayMemberDetail(String memberInfo) {
         String [] memberAttrs = memberInfo.split(",");
 
@@ -174,6 +181,29 @@ public class Member {
         System.out.println("Membership: " + membership);
     }
 
+
+    public void modifyMembership(double total) {
+        if (total >= 5 && total < 10) {
+            this.setType("Silver");
+        }
+        else if (total >= 10 && total < 25) {
+            this.setType("Gold");
+        }
+        else if (total >= 25) {
+            this.setType("Platinum");
+        }
+        else {
+            this.setType("YOU POOR ASS");
+        }
+    }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+
     public String displayMemberDetails() {
         return "Member{" +
                 "name='" + name + '\'' +
@@ -182,29 +212,61 @@ public class Member {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+
     }
 
     public String getName() {
         return name;
     }
 
-    public int getPhoneNumb() {
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoneNumb() {
         return phoneNumb;
     }
 
+    public void setPhoneNumb(String phoneNumb) {
+        this.phoneNumb = phoneNumb;
+    }
+    
     public String getAddress() {
         return address;
+    }
+
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getUsername() {
         return username;
     }
 
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+
     public String getMemberID() {
         return memberID;
+
     }
 }

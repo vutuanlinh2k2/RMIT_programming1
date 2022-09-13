@@ -3,13 +3,70 @@ import java.io.*;
 import java.time.LocalDate;
 
 public class Order implements Serializable {
+
     private HashMap<Product, Integer> productDetails; // <productID, <quantity, price>>
+
     // or HashMap<Product, Integer> if product already contains info of price
     private String orderID;
     private String customerId;
     private String address;
     private double total;
     private LocalDate date;
+
+    private String status = "unpaid";
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Order() {
+
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     // an order would contain info of the product ordered,
     // the quantity
     public Order(HashMap<Product, Integer> productDetails, String address, String customerId) {
@@ -81,6 +138,7 @@ public class Order implements Serializable {
 //        double total = 0;
 //        for (var index : productDetails.entrySet()) {
 //            Product product = index.getKey();
+
 //            double price = product.getPrice();
 //            int quantity = index.getValue();
 //            total += price * quantity;
@@ -90,6 +148,7 @@ public class Order implements Serializable {
 
 
 //    public void viewOrderDetails() {
+
 //        System.out.println("Order:" +
 //                " orderID=" + orderID +
 //                ", address='" + address + '\'' +
