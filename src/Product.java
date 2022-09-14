@@ -15,6 +15,7 @@ public class Product {
         this.category = category;
     }
 
+    // a method to check if there is a product with the matching name
     public static boolean checkProductExisted(String name) throws IOException {
 
         // a scanner for the product.txt file
@@ -38,15 +39,17 @@ public class Product {
         return false;
     }
 
+    // a static method to display info of a product
     public static void displayProductDetail(String productInfo) {
 
+        // getting the info of product from the line
         String[] productAttrs = productInfo.split(",");
-
         String productId = productAttrs[0];
         String productName = productAttrs[1];
         String productPrice = productAttrs[2];
         String productCategory = productAttrs[3];
 
+        // display the info of the product to the user
         System.out.println("Id: " + productId);
         System.out.println("Name: " + productName);
         System.out.println("Price: " + productPrice + " mil VND");

@@ -104,16 +104,13 @@ public class Admin {
         // generate new product id
         String productId = UUID.randomUUID().toString();
 
-        // getting new product name
         String productName;
 
         // a loop to get a valid name for the new product
         while (true) {
 
             // getting the input name
-
             System.out.println("Product's name: ");
-
             productName = scannerInput.nextLine();
 
             // if there is no product with this name yet, the input name is valid
@@ -166,7 +163,9 @@ public class Admin {
         File tempFile = new File("tempFile.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
+        // a boolean to check if we can find any matching product
         boolean foundProduct = false;
+
         // loop through each line of product.txt file
         while (scannerProduct.hasNextLine()) {
 
@@ -175,7 +174,7 @@ public class Admin {
             String[] currentProductAttrs = currentProduct.split(",");
             String currentProductName = currentProductAttrs[1];
 
-            // if the name is not matched with user input
+            // if the name is not matched with user input, just add the line to new file
             if (!inputName.equals(currentProductName)) {
                 // write the current line to the temp file
                 writer.write(currentProduct + (scannerProduct.hasNextLine() ? System.lineSeparator() : ""));
@@ -183,6 +182,7 @@ public class Admin {
                 continue;
             }
 
+            // a matching product was found
             foundProduct = true;
 
             // ask the admin for the updated price
@@ -196,13 +196,13 @@ public class Admin {
             // write the updated line to the temp file
             writer.write(updatedProduct + (scannerProduct.hasNextLine() ? System.lineSeparator() : ""));
 
-            // rename the temp file to product.txt, replacing the old one
             System.out.println("The price of the product has been successfully updated.\n");
         }
+        // rename the temp file to product.txt, replacing the old one
         tempFile.renameTo(new File("./product.txt"));
         writer.close();
 
-        // cannot find a product matching the name input, prompt the admin
+        // if we cannot find a product matching the name input, prompt the admin
         if (!foundProduct) {
             System.out.println("Cannot find a product with this name, please try again.\n");
         }
@@ -223,7 +223,7 @@ public class Admin {
         System.out.println("Enter Customer Id: ");
         String inputCustomerId = scannerInput.nextLine();
 
-        // a variable to check if there were any orders with this customerId
+        // a variable to check if there were any matching orders with this customerId
         boolean customerExisted = false;
 
         // going through the order.txt file
@@ -265,6 +265,7 @@ public class Admin {
         File tempFile = new File("tempFile.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
+        // a boolean to check if we can find any matching order
         boolean foundOrder = false;
 
         // loop through each line of order.txt file
@@ -282,6 +283,7 @@ public class Admin {
                 continue;
             }
 
+            // a matching order was found
             foundOrder = true;
 
             // getting the status of the current order
@@ -299,6 +301,7 @@ public class Admin {
 
             // write the updated line to the temp file
             writer.write(updatedOrder + (scannerOrder.hasNextLine() ? System.lineSeparator() : ""));
+
             System.out.println("This order has successfully been updated to paid status.\n");
         }
 
