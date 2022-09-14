@@ -1,13 +1,12 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class Product {
-    private String id;
-    private String title;
-    private double price;
-    private String category;
+    final private String id;
+    final private String title;
+    final private double price;
+    final private String category;
 
     public Product(String id, String title, double price, String category) {
         this.id = id;
@@ -50,7 +49,7 @@ public class Product {
 
         System.out.println("Id: " + productId);
         System.out.println("Name: " + productName);
-        System.out.println("Price: " + productPrice);
+        System.out.println("Price: " + productPrice + " mil VND");
         System.out.println("Category: " + productCategory + "\n");
     }
 

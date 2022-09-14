@@ -166,6 +166,7 @@ public class Admin {
         File tempFile = new File("tempFile.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
+        boolean foundProduct = false;
         // loop through each line of product.txt file
         while (scannerProduct.hasNextLine()) {
 
@@ -182,8 +183,9 @@ public class Admin {
                 continue;
             }
 
+            foundProduct = true;
+
             // ask the admin for the updated price
-            System.out.println("Changing the price to: ");
             String newPrice = String.valueOf(InputValidator.getDoubleInput("Product's new price: ",
                     "Product price must be an integer or decimal number."));
 
@@ -193,18 +195,17 @@ public class Admin {
 
             // write the updated line to the temp file
             writer.write(updatedProduct + (scannerProduct.hasNextLine() ? System.lineSeparator() : ""));
-            writer.close();
 
             // rename the temp file to product.txt, replacing the old one
-            tempFile.renameTo(new File("./product.txt"));
             System.out.println("The price of the product has been successfully updated.\n");
-            return;
         }
-
+        tempFile.renameTo(new File("./product.txt"));
         writer.close();
 
         // cannot find a product matching the name input, prompt the admin
-        System.out.println("Cannot find any product matching this name.");
+        if (!foundProduct) {
+            System.out.println("Cannot find a product with this name, please try again.\n");
+        }
     }
 
     // 11 - a method to let admin get orders by customer id
@@ -219,8 +220,8 @@ public class Admin {
         Scanner scannerInput = new Scanner(System.in);
 
         // getting customer id input
-        String inputCustomerId = scannerInput.nextLine();
         System.out.println("Enter Customer Id: ");
+        String inputCustomerId = scannerInput.nextLine();
 
         // a variable to check if there were any orders with this customerId
         boolean customerExisted = false;
@@ -264,6 +265,8 @@ public class Admin {
         File tempFile = new File("tempFile.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
+        boolean foundOrder = false;
+
         // loop through each line of order.txt file
         while (scannerOrder.hasNextLine()) {
 
@@ -279,34 +282,34 @@ public class Admin {
                 continue;
             }
 
+            foundOrder = true;
+
             // getting the status of the current order
-            String currentStatus = order.split(",")[6];
+            String currentStatus = order.split(",")[7];
 
             // if the order status has already been updated, prompt the admin
             if (currentStatus.equals("paid")) {
-                writer.write(order + (scannerOrder.hasNextLine() ? System.lineSeparator() : ""));
                 System.out.println("This order already has paid status.");
-                writer.close();
-                return;
+                writer.write(order + (scannerOrder.hasNextLine() ? System.lineSeparator() : ""));
+                continue;
             }
 
-            // changing order staus to paid
+            // changing order status to 'paid'
             String updatedOrder = order.replace(currentStatus, "paid");
 
             // write the updated line to the temp file
             writer.write(updatedOrder + (scannerOrder.hasNextLine() ? System.lineSeparator() : ""));
-            writer.close();
-
-            // rename the temp file to order.txt, replacing the old one
-            tempFile.renameTo(new File("./order.txt"));
-            System.out.println("This order has been updated to paid status.\n");
-            return;
+            System.out.println("This order has successfully been updated to paid status.\n");
         }
 
+        // rename the temp file to order.txt, replacing the old one
+        tempFile.renameTo(new File("./order.txt"));
         writer.close();
 
         // cannot find any order that match the name input, prompt the admin
-        System.out.println("Cannot find any order matching this id.");
+        if (!foundOrder) {
+            System.out.println("Cannot find any order with this id.");
+        }
     }
 
     // a method to display all the order for today
@@ -353,7 +356,7 @@ public class Admin {
         // getting the current date
         String today = LocalDate.now().toString();
 
-        // a variavle to track the total revenue today
+        // a variable to track the total revenue today
         double revenue = 0;
 
         // loop through each order in the order.txt file
@@ -364,7 +367,7 @@ public class Admin {
             String[] orderAttrs = order.split(",");
             String orderDate = orderAttrs[2];
 
-            // if the order is in today, add it's revenue to the total one
+            // if the order is in today, add its revenue to the total one
             if (orderDate.equals(today)) {
                 double orderTotal = Double.parseDouble(orderAttrs[6]);
                 revenue += orderTotal;
@@ -372,25 +375,5 @@ public class Admin {
         }
 
         System.out.println("Total revenue today is: " + revenue);
-    }
-    
-    public void membershipValuate(String customerID) {
-        OrderDAO orderDAO = new OrderDAO();
-        List<Order> listAllorders = orderDAO.findAll();
-        List<Order> newList = new ArrayList<>();
-
-        for (Order o : listAllorders) {
-            if (o.getCustomerId().equals(customerID) && o.getStatus().equals("paid")) {
-                newList.add(o);
-            }
-        }
-        double total = 0;
-        for (Order o : newList) {
-            total += o.getTotal();
-        }
-
-        MemberDAO memberDAO = new MemberDAO();
-        Member member = memberDAO.findOne(customerID);
-        member.modifyMembership(total);
     }
 }
