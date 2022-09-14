@@ -5,6 +5,10 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+
+        welcomeScreen();
+        newCommandSeparator();
+
         Scanner scanner = new Scanner(System.in);
         String role;
         boolean roleSelected = false;
@@ -31,6 +35,88 @@ public class Main {
         }
     }
 
+    static public void customerFlow() throws IOException {
+        Customer customer = new Customer();
+
+        boolean isContinue = true;
+        while (isContinue) {
+            System.out.println("1 - register");
+            System.out.println("2 - login");
+            System.out.println("3 - see all product details");
+            System.out.println("4 - search products by category");
+            System.out.println("5 - sort product by price");
+            System.out.println("0 - quit\n");
+
+            int option = InputValidator.getIntInput("Choose one of the actions above (0-5): ",
+                    "Please only choose number 0-5");
+            switch (option) {
+                case 1:
+                    customer.registerMember();
+                    newCommandSeparator();
+                    break;
+                case 2:
+                    customer.login();
+                    newCommandSeparator();
+                    break;
+                case 3:
+                    customer.viewProduct();
+                    newCommandSeparator();
+                    break;
+                case 4:
+                    customer.searchProductByCategory();
+                    newCommandSeparator();
+                    break;
+                case 5:
+                    customer.sortProduct();
+                    newCommandSeparator();
+                    break;
+                case 0:
+                    isContinue = false;
+                    System.out.println("Stopping the program.");
+                    break;
+                default:
+                    System.out.println("\nNo action correspond to this number! Please enter 0-5 only.\n");
+            }
+        }
+    }
+
+    static public void memberFlow() throws IOException {
+        Member member = null;
+        while (member == null) {
+            member = Member.login();
+        }
+        boolean isContinue = true;
+        while (isContinue) {
+            System.out.println("1 - create new order");
+            System.out.println("2 - get order by id");
+            System.out.println("3 - view account details");
+            System.out.println("0 - quit\n");
+
+            int option = InputValidator.getIntInput("Choose one of the actions above (0-5): ",
+                    "Please only choose number 0-5");
+            switch (option) {
+                case 1:
+                    member.createOrder();
+                    newCommandSeparator();
+                    break;
+                case 2:
+                    member.getOrderById();
+                    newCommandSeparator();
+                    break;
+                case 3:
+                    member.getCurrentMemberDetail();
+                    newCommandSeparator();
+                    break;
+                case 0:
+                    isContinue = false;
+                    System.out.println("Stopping the program.");
+                    break;
+                default:
+                    System.out.println("\nNo action correspond to this number! Please enter 0-5 only.\n");
+            }
+        }
+    }
+
     static public void adminFlow() throws IOException {
 
         Admin admin = new Admin();
@@ -39,7 +125,7 @@ public class Main {
         while (!isLogin) {
             isLogin = admin.login();
         }
-        Scanner scanner = new Scanner(System.in);
+
         boolean isContinue = true;
         while (isContinue) {
             System.out.println("1 - viewProducts");
@@ -98,89 +184,6 @@ public class Main {
                     break;
                 default:
                     System.out.println("\nNo action correspond to this number! Please enter 0-7 only.\n");
-            }
-        }
-    }
-
-    static public void memberFlow() throws IOException {
-        Member member = new Member();
-        boolean isLogin = false;
-        while (!isLogin) {
-            isLogin = member.login();
-        }
-        Scanner scanner = new Scanner(System.in);
-        boolean isContinue = true;
-        while (isContinue) {
-            System.out.println("1 - create new order");
-            System.out.println("2 - view membership badge (silver/gold/platinum)");
-            System.out.println("3 - view account details");
-//            System.out.println("4 - search products by category");
-//            System.out.println("5 - sort product by price");
-            System.out.println("0 - quit\n");
-
-            int option = InputValidator.getIntInput("Choose one of the actions above (0-5): ",
-                    "Please only choose number 0-5");
-            switch (option) {
-                case 1:
-                    Member.createOrder(member.getMemberID());
-                    newCommandSeparator();
-                    break;
-                case 2:
-                    newCommandSeparator();
-                    break;
-                case 3:
-                    System.out.println(member.displayMemberDetails());
-                    newCommandSeparator();
-                    break;
-                case 0:
-                    isContinue = false;
-                    System.out.println("Stopping the program.");
-                    break;
-                default:
-                    System.out.println("\nNo action correspond to this number! Please enter 0-5 only.\n");
-            }
-        }
-    }
-
-    static public void customerFlow() throws IOException {
-        Customer customer = new Customer();
-
-        boolean isContinue = true;
-        while (isContinue) {
-            System.out.println("1 - register");
-            System.out.println("2 - login");
-            System.out.println("3 - see all product details");
-            System.out.println("4 - search products by category");
-            System.out.println("5 - sort product by price");
-            System.out.println("0 - quit\n");
-
-            int option = InputValidator.getIntInput("Choose one of the actions above (0-5): ",
-                    "Please only choose number 0-5");
-            switch (option) {
-                case 1:
-                    newCommandSeparator();
-                    break;
-                case 2:
-                    newCommandSeparator();
-                    break;
-                case 3:
-                    customer.viewProduct();
-                    newCommandSeparator();
-                    break;
-                case 4:
-                    customer.searchProductByCategory();
-                    newCommandSeparator();
-                    break;
-                case 5:
-                    customer.sortProduct();
-                    newCommandSeparator();
-                    break;
-                case 0:
-                    isContinue = false;
-                    System.out.println("Stopping the program.");
-                    break;
-                default:
-                    System.out.println("\nNo action correspond to this number! Please enter 0-5 only.\n");
             }
         }
     }

@@ -1,12 +1,13 @@
-I001-2001,Dell XPS 17,5.5,Laptop
-I002-1988,Macbook Pro 15,8.5,Laptop
-I003-1992,Samsung Galaxy S22,4.5,Phone
-I004-1999,Iphone 13 PM,7.5,Phone
-I005-2015,Harman Kardon,3.5,Earbud
-I006-2014,Marshall,6,Headset
+I001-2001,Dell XPS 17,2.5,Laptop
+I002-1988,Macbook Pro 15,10,Laptop
+I003-1992,Samsung Galaxy S22,2,Phone
+I004-1999,Iphone 13 PM,3,Phone
+I005-2015,Harman Kardon,3.5,0.5,Earbud
+I006-2014,Marshall,1,Headset
 e2ea070e-12f4-4b87-a7eb-1e5f5dd0f79f,Iphone12,6.5,Phone
-1424db3a-c72c-4694-a097-b37cab72499e,Macbook Air M1,14.5,Laptop
-6777d2f4-1fb1-44b1-8dcc-fb752628aa47,Macbook Pro M1 Max,23.5,Laptop
-f78196ef-7fd7-45a3-a1fe-753266ba392e,Iphone 8,9.5,Phone
-d27b95ef-e430-40d1-8259-3258b17acb61,Iphone X,10.5,Phone
-048e640f-04f9-4cbe-b5d1-973dfc4874a3,Iphone 14,14.5,Phone
+1424db3a-c72c-4694-a097-b37cab72499e,Macbook Air M1,15,Laptop
+6777d2f4-1fb1-44b1-8dcc-fb752628aa47,Macbook Pro M1 Max,25,Laptop
+f78196ef-7fd7-45a3-a1fe-753266ba392e,Iphone 8,5,Phone
+d27b95ef-e430-40d1-9.0259-3259.0b17acb61,Iphone X,9.0,Phone
+048e640f-04f9-4cbe-b5d1-973dfc4874a3,Iphone 14,13,Phone
+07dc93c4-668c-4fc9-ac55-212d6400686b,Iphone 14 Pro,20.0,Phone

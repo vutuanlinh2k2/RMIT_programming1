@@ -1,9 +1,76 @@
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Customer {
+
+    // 1 - customer can register to become a member
+    public void registerMember() throws IOException {
+
+        // set up scanner for user inputs
+        Scanner scannerInput = new Scanner(System.in);
+
+        // get user inputs
+        System.out.println("Please enter your full name: ");
+        String fullName = scannerInput.nextLine();
+
+        String username;
+        while (true) {
+
+            // getting the input name
+
+            System.out.println("Enter your username: ");
+
+            username = scannerInput.nextLine();
+
+            if (!Member.checkMemberExisted(username)) {
+                break;
+            }
+            else {
+                System.out.println("This username has already been taken! Please choose to different one.\n");
+            }
+        }
+
+        String phoneNumber;
+        while (true) {
+
+            // getting the input name
+
+            System.out.println("Enter your phone number: ");
+
+            phoneNumber = scannerInput.nextLine();
+
+            if (phoneNumber.matches("^\\d{10}$")) {
+                break;
+            }
+            else {
+                System.out.println("Wrong phone number format. Please try again. \n");
+            }
+        }
+
+        System.out.println("Your home address: ");
+        String address = scannerInput.nextLine();
+
+        System.out.println("Please provide a password: ");
+        String pass = scannerInput.nextLine();
+
+        String customerId = UUID.randomUUID().toString();
+
+        String newMember = String.join(",",customerId, fullName, username, pass, phoneNumber,
+                address, "Normal", "0.0");
+
+        Writer output = new BufferedWriter(new FileWriter("./member.txt", true));
+        output.append(System.lineSeparator() + newMember);
+
+        System.out.println("Successfully registered.");
+        output.close();
+    }
+
+    // 2 - customer can log in with their registered usernames and passwords and view their information
+    public void login() throws IOException {
+        Member.login();
+    }
 
     // 3 -a method to list all products and product detail
     public void viewProduct() throws IOException {
