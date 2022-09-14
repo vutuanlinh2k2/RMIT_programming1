@@ -16,50 +16,57 @@ public class Customer {
         String fullName = scannerInput.nextLine();
 
         String username;
+
+        // a loop to get a valid username
         while (true) {
 
             // getting the input name
-
             System.out.println("Enter your username: ");
-
             username = scannerInput.nextLine();
 
+            // if the username is not taken yet, break the loop
             if (!Member.checkMemberExisted(username)) {
                 break;
             }
+            // if the username is taken, prompt the user to try again
             else {
                 System.out.println("This username has already been taken! Please choose to different one.\n");
             }
         }
 
         String phoneNumber;
+
+        // a loop to get a valid phone number
         while (true) {
 
-            // getting the input name
-
+            // getting the input phone number
             System.out.println("Enter your phone number: ");
-
             phoneNumber = scannerInput.nextLine();
 
+            // if the input is valid, break the loop
             if (phoneNumber.matches("^\\d{10}$")) {
                 break;
             }
+            // if the input is invalid, prompt the user to try again
             else {
                 System.out.println("Wrong phone number format. Please try again. \n");
             }
         }
 
+        // getting customer address
         System.out.println("Your home address: ");
         String address = scannerInput.nextLine();
 
+        // ask them to provide a password for their account
         System.out.println("Please provide a password: ");
         String pass = scannerInput.nextLine();
 
+        // generate customer id
         String customerId = UUID.randomUUID().toString();
 
+        // add a new line of member to the member.txt file
         String newMember = String.join(",",customerId, fullName, username, pass, phoneNumber,
                 address, "Normal", "0.0");
-
         Writer output = new BufferedWriter(new FileWriter("./member.txt", true));
         output.append(System.lineSeparator() + newMember);
 
