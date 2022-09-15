@@ -124,7 +124,7 @@ public class Main {
 
             // getting user option
             int option = InputValidator.getIntInput("Choose one of the actions above (0-5): ",
-                    "Please only choose number 0-5");
+                    "Please only choose number 0-3");
 
             // perform different customer actions based on user's option
             switch (option) {
