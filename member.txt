@@ -1,0 +1,4 @@
+mem1,Luong Thao My,july,abc123,0919987678,Tan Binh,Silver,15.0
+mem2,Lai Minh Tri,tri,def456,0132456789,Nha Dep,Gold,15.0
+mem3,Vu Tuan Linh,linh,xyz789,0918273645,District 7,Normal,0.0
+08587ff0-73dd-4436-88bb-908c00d1d979,Xuan,sam,sam123,0987654321,Nha Be,Platinum,53.65
