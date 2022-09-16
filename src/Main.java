@@ -236,7 +236,7 @@ public class Main {
         System.out.println("COSC2081 GROUP ASSIGNMENT ");
         System.out.println("STORE ORDER MANAGEMENT SYSTEM ");
         System.out.println("Instructor: Mr. Minh Vu");
-        System.out.println("Group: Group Name");
+        System.out.println("Group: Javalade");
         System.out.println("s3927502, Vu Tuan Linh");
         System.out.println("s3922086, Luong Thao My");
         System.out.println("s3927026, Lai Minh Tri");

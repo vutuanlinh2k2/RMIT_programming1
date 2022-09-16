@@ -1,6 +1,6 @@
 ord1,cus1,2022-08-27,12 ABC Street,Macbook Pro 15:Iphone12,1:2,23,paid
 ord2,cus2,2022-09-12,13 HUY Street,Macbook Air M1,2,30,paid
 ord3,cus1,2022-09-13,ABC Street,Iphone12,1,6.5,paid
-6fd060f0-494c-4972-937a-32c1a0ef9d94,08587ff0-73dd-4436-88bb-908c00d1d979,2022-09-14,cajk,Macbook Air M1:Iphone X,1:1,24.0,delivered
-8f781200-de11-4f32-9015-a918001a7d68,08587ff0-73dd-4436-88bb-908c00d1d979,2022-09-14,cajls,Macbook Pro M1 Max,1,22.0,delivered
-c0f2cef8-7c62-4bd2-9e05-f5d22e5a4fa3,08587ff0-73dd-4436-88bb-908c00d1d979,2022-09-14,cml,Iphone X,1,7.65,delivered
+6fd060f0-494c-4972-937a-32c1a0ef9d94,08587ff0-73dd-4436-88bb-908c00d1d979,2022-09-14,ABC,Macbook Air M1:Iphone X,1:1,24.0,delivered
+8f781200-de11-4f32-9015-a918001a7d68,08587ff0-73dd-4436-88bb-908c00d1d979,2022-09-15,DEF,Macbook Pro M1 Max,1,22.0,delivered
+c0f2cef8-7c62-4bd2-9e05-f5d22e5a4fa3,08587ff0-73dd-4436-88bb-908c00d1d979,2022-09-15,XYZ,Iphone X,1,7.65,paid
