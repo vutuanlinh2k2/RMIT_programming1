@@ -67,7 +67,7 @@ public class Customer {
         // add a new line of member to the member.txt file
         String newMember = String.join(",",customerId, fullName, username, pass, phoneNumber,
                 address, "Normal", "0.0");
-        Writer output = new BufferedWriter(new FileWriter("./member.txt", true));
+        Writer output = new BufferedWriter(new FileWriter("./src/member.txt", true));
         output.append(System.lineSeparator() + newMember);
 
         System.out.println("Successfully registered.");
@@ -85,7 +85,7 @@ public class Customer {
         System.out.println("Viewing all products.\n");
 
         // setup scanner for product.txt file
-        Scanner scannerProduct = new Scanner(new File("./product.txt"));
+        Scanner scannerProduct = new Scanner(new File("./src/product.txt"));
 
         // using loop to display all information of each product
         while (scannerProduct.hasNextLine()) {
@@ -100,7 +100,7 @@ public class Customer {
         System.out.println("Searching products by category.\n");
 
         // setup scanner for product.txt file
-        Scanner scannerProduct = new Scanner(new File("./product.txt"));
+        Scanner scannerProduct = new Scanner(new File("./src/product.txt"));
 
         // setup scanner for user input
         Scanner scannerInput = new Scanner(System.in);
@@ -138,7 +138,7 @@ public class Customer {
         System.out.println("Sorting the product by price");
 
         // set up scanner for product.txt file
-        Scanner scannerProduct = new Scanner(new File("./product.txt"));
+        Scanner scannerProduct = new Scanner(new File("./src/product.txt"));
 
         // set up scanner for user input
         Scanner scannerInput = new Scanner(System.in);

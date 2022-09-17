@@ -22,7 +22,7 @@ public class Admin {
         String pwInput = scannerInput.nextLine();
 
         // setting up scanner for admin.txt file
-        Scanner scannerAdmin = new Scanner(new File("./admin.txt"));
+        Scanner scannerAdmin = new Scanner(new File("./src/admin.txt"));
 
         // loop through the admin.txt file to find matching username and password
         while (scannerAdmin.hasNextLine()) {
@@ -53,7 +53,7 @@ public class Admin {
         System.out.println("Viewing all products.\n");
 
         // setup scanner for product.txt file
-        Scanner scannerProduct = new Scanner(new File("./product.txt"));
+        Scanner scannerProduct = new Scanner(new File("./src/product.txt"));
 
         // using loop to display all information of each product
         while (scannerProduct.hasNextLine()) {
@@ -68,7 +68,7 @@ public class Admin {
         System.out.println("Viewing all orders.\n");
 
         // setup scanner for order.txt file
-        Scanner scannerOrder = new Scanner(new File("./order.txt"));
+        Scanner scannerOrder = new Scanner(new File("./src/order.txt"));
 
         // using loop to display all information of each order
         while(scannerOrder.hasNextLine()) {
@@ -84,7 +84,7 @@ public class Admin {
         System.out.println("Viewing all members.\n");
 
         // setup scanner for member.txt file
-        Scanner scannerMember = new Scanner(new File("./member.txt"));
+        Scanner scannerMember = new Scanner(new File("./src/member.txt"));
 
         // using loop to display all information of each member
         while(scannerMember.hasNextLine()) {
@@ -136,7 +136,7 @@ public class Admin {
         String newProduct = String.join(",", productId, productName, productPrice, productCategory);
 
         // append the line for the new product to the end of the product.txt file
-        Writer output = new BufferedWriter(new FileWriter("./product.txt", true));
+        Writer output = new BufferedWriter(new FileWriter("./src/product.txt", true));
         output.append(System.lineSeparator() + newProduct);
 
         // prompt the admin that the product has been added successfully
@@ -157,7 +157,7 @@ public class Admin {
         String inputName = scannerInput.nextLine();
 
         // a scanner for the file product.txt
-        Scanner scannerProduct = new Scanner(new File("./product.txt"));
+        Scanner scannerProduct = new Scanner(new File("./src/product.txt"));
 
         // create a writer for a temporary file to store updated data
         File tempFile = new File("tempFile.txt");
@@ -199,7 +199,7 @@ public class Admin {
             System.out.println("The price of the product has been successfully updated.\n");
         }
         // rename the temp file to product.txt, replacing the old one
-        tempFile.renameTo(new File("./product.txt"));
+        tempFile.renameTo(new File("./src/product.txt"));
         writer.close();
 
         // if we cannot find a product matching the name input, prompt the admin
@@ -214,7 +214,7 @@ public class Admin {
         System.out.println("Getting orders by customer Id\n");
 
         // setup scanner for order.txt file
-        Scanner scannerOrder = new Scanner(new File("./order.txt"));
+        Scanner scannerOrder = new Scanner(new File("./src/order.txt"));
 
         // set scanner for user input
         Scanner scannerInput = new Scanner(System.in);
@@ -259,7 +259,7 @@ public class Admin {
         String inputOrderId = scannerInput.nextLine();
 
         // a scanner for the file order.txt
-        Scanner scannerOrder = new Scanner(new File("./order.txt"));
+        Scanner scannerOrder = new Scanner(new File("./src/order.txt"));
 
         // create a writer for a temporary file to store updated data
         File tempFile = new File("tempFile.txt");
@@ -306,7 +306,7 @@ public class Admin {
         }
 
         // rename the temp file to order.txt, replacing the old one
-        tempFile.renameTo(new File("./order.txt"));
+        tempFile.renameTo(new File("./src/order.txt"));
         writer.close();
 
         // cannot find any order that match the name input, prompt the admin
@@ -320,7 +320,7 @@ public class Admin {
         System.out.println("Getting order details for today.\n");
 
         // set up a scanner for the file order.txt
-        Scanner scannerOrder = new Scanner(new File("./order.txt"));
+        Scanner scannerOrder = new Scanner(new File("./src/order.txt"));
 
         // getting the current date
         String today = LocalDate.now().toString();
@@ -354,7 +354,7 @@ public class Admin {
         System.out.println("Getting total revenue for today.\n");
 
         // set up a scanner for the file order.txt
-        Scanner scannerOrder = new Scanner(new File("./order.txt"));
+        Scanner scannerOrder = new Scanner(new File("./src/order.txt"));
 
         // getting the current date
         String today = LocalDate.now().toString();
