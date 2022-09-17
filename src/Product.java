@@ -19,7 +19,7 @@ public class Product {
     public static boolean checkProductExisted(String name) throws IOException {
 
         // a scanner for the product.txt file
-        Scanner scannerProduct = new Scanner(new File("./product.txt"));
+        Scanner scannerProduct = new Scanner(new File("./src/product.txt"));
 
         // loop through each line of the product.txt file
         while (scannerProduct.hasNextLine()) {

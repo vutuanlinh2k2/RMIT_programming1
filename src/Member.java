@@ -60,7 +60,7 @@ public class Member {
             while (!productFound) {
 
                 // a scanner for product.txt file
-                Scanner scannerProduct = new Scanner(new File("./product.txt"));
+                Scanner scannerProduct = new Scanner(new File("./src/product.txt"));
 
                 // getting the product name from users
                 System.out.println("\nEnter the name of the product you want to purchase: ");
@@ -152,7 +152,7 @@ public class Member {
         // append the line for the new order to the end of the order.txt file
         String newOrder = String.join(",", orderId, this.getMemberId(), orderDate, orderAddress,
                 currentOrderProducts, currentOrderProductAmounts, String.valueOf(totalAfterDiscount), "delivered");
-        Writer output = new BufferedWriter(new FileWriter("./order.txt", true));
+        Writer output = new BufferedWriter(new FileWriter("./src/order.txt", true));
         output.append(System.lineSeparator() + newOrder);
 
         // let the user check back all the info of the product
@@ -189,7 +189,7 @@ public class Member {
         String pwInput = scannerInput.nextLine();
 
         // setting up scanner for member.txt file
-        Scanner scannerMember = new Scanner(new File("./member.txt"));
+        Scanner scannerMember = new Scanner(new File("./src/member.txt"));
 
         // loop through the member.txt file to find matching username and password
         while (scannerMember.hasNextLine()) {
@@ -240,7 +240,7 @@ public class Member {
         System.out.println("Getting orders by Id\n");
 
         // setup scanner for order.txt file
-        Scanner scannerOrder = new Scanner(new File("./order.txt"));
+        Scanner scannerOrder = new Scanner(new File("./src/order.txt"));
 
         // set scanner for user input
         Scanner scannerInput = new Scanner(System.in);
@@ -303,7 +303,7 @@ public class Member {
         }
 
         // a scanner for the member.txt file
-        Scanner scannerMember = new Scanner(new File("./member.txt"));
+        Scanner scannerMember = new Scanner(new File("./src/member.txt"));
 
         // create a writer for a temporary file to store updated data
         File tempFile = new File("tempFile.txt");
@@ -334,7 +334,7 @@ public class Member {
             writer.write(updatedMember + (scannerMember.hasNextLine() ? System.lineSeparator() : ""));
 
             // rename the temp file to product.txt, replacing the old one
-            tempFile.renameTo(new File("./member.txt"));
+            tempFile.renameTo(new File("./src/member.txt"));
 
             // if there was a upgrade in the membership, congratulate the user
             if (!newMemberShip.equals(this.getMembership())) {
@@ -370,7 +370,7 @@ public class Member {
     public static boolean checkMemberExisted(String username) throws IOException {
 
         // a scanner for the member.txt file
-        Scanner scannerMember = new Scanner(new File("./member.txt"));
+        Scanner scannerMember = new Scanner(new File("./src/member.txt"));
 
         // loop through each line of the member.txt file
         while (scannerMember.hasNextLine()) {
